@@ -192,8 +192,7 @@ install_yay() {
 }
     package_yay=(
     swayosd-git waypaper hyprswitch qt5ct-kde qt6ct-kde grimblast swaylock-effects
-    wlogout protonup-qt-bin clipman clipse winff ventoy-bin  stremio
-    heroic-games-launcher-bin visual-studio-code-bin jamesdsp-pipewire-bin terabox-bin
+    wlogout protonup-qt-bin clipman clipse winff heroic-games-launcher-bin visual-studio-code-bin 
     )
     
        
