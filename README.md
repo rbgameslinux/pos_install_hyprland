@@ -3,7 +3,7 @@ Script para instalação do Hyprland p/Archlinux com minhas configs e personaliz
 
 Esse script já faz a instalação de todos os pacotes necessários para se jogar no Archlinux com Hyprland.
 
-E já faz todas a dotfiles do hyprland necessárias para se ter um bom funcionamento.
+E já faz todas as dotfiles necessárias para se ter um bom funcionamento.
 
 E já vem personalizado e configurado conforme foi mostrado nos videos da playlist do canal 
 
