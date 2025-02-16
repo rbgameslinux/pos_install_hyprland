@@ -20,6 +20,8 @@ echo  "# E-mail = rbgameslinux@gmail.com                       #"
 echo  "#########################################################"
 echo  
 echo "Este script foi feito para Archlinux com placas de video AMD."
+echo "Placas de video Nvidia suporte experimental."
+echo "Erros p/quem está utilizando Nvidia podem ocorrer ."
 echo "Este script fará alterações no seu sistema."
 echo "Ele instalará pacotes e irá adicionar o usuário ao grupo 'wheel'."
 echo "Lembrando que ele foi feito para instalações minimal do archlinux."
