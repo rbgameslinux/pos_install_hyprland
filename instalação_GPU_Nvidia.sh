@@ -226,9 +226,9 @@ install_yay() {
     done
 }
     package_yay=(
-    swayosd-git waypaper hyprswitch qt5ct-kde qt6ct-kde grimblast
+    swayosd-git waypaper  qt5ct-kde qt6ct-kde grimblast
     swaylock-effects reiserfsprogs wlogout protonup-qt-bin clipman
-    clipse winff heroic-games-launcher-bin visual-studio-code-bin 
+    clipse heroic-games-launcher-bin visual-studio-code-bin 
     )
     
        
