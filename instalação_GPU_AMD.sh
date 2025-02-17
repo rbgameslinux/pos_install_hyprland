@@ -21,10 +21,11 @@ echo  "#########################################################"
 echo  
 echo "Este script foi feito para Archlinux com placas de video AMD."
 echo "Este script fará alterações no seu sistema."
+echo "Irá adicionar suporte ao aur via yay e instalará pacotes do aur."
 echo "Ele instalará pacotes e irá adicionar o usuário ao grupo 'wheel'."
 echo "Lembrando que ele foi feito para instalações minimal do archlinux."
 echo "ATENCÃO SÓ GPU AMD"
-echo "utilize por sua conta e risco"
+echo "Utilize por sua conta e risco"
 echo "Tem certeza de que deseja prosseguir."
 echo
 echo
@@ -42,23 +43,80 @@ resposta=$(echo "$resposta" | tr '[:upper:]' '[:lower:]')
 if [[ "$resposta" == "sim" || "$resposta" == "s" ]]; then
   echo "Você concordou! Continuando..."
 
-                      # seu script aqui
+#                           seu script aqui
  #######################################################################     
 
-# Pergunta para o usuário se a cpu é AMD ou Intel
+# Pergunta se o processador é AMD ou Intel ?
 
-echo "Seu processador é AMD? (s/n)"
-read resposta
+echo "Seu processador é AMD ou Intel?"
+sleep 1
+echo "Digite 'amd' para AMD ou 'intel' para Intel."
+read processador
 
-# Condicional para verificar a resposta
+# Verifica a resposta 
 
-if [ "$resposta" == "s" ]; then
-        # Executa o comando se a resposta for "sim"
-    echo "Você escolheu SIM. Executando a instalação p/AMD"
+if [ "$processador" == "amd" ]; then
+    echo "Instalando pacotes p/AMD ..."
+
+Install_pacman() {
+    package=$1
+    for i in {1..3}; do
+        if sudo pacman -S --noconfirm --needed "$package"; then
+            echo "$package instalado com sucesso."
+            break
+        else
+            echo "Erro ao instalar $package. Tentativa $i de 3..."
+            pause
+        fi
+    done
+}
+package=(
+    lib32-vulkan-radeon amd-ucode
+    xf86-video-amdgpu xf86-video-ati vulkan-radeon
+)
+for pkg in "${packages[@]}"; do
+    Install_pacman "$pkg"
+done
+
 echo
-echo 
+
+elif [ "$processador" == "intel" ]; then
+    echo "Instalando pacotes p/Intel ..."
+   
+   Install_pacman() {
+    package=$1
+    for i in {1..3}; do
+        if sudo pacman -S --noconfirm --needed "$package"; then
+            echo "$package instalado com sucesso."
+            break
+        else
+            echo "Erro ao instalar $package. Tentativa $i de 3..."
+            pause
+        fi
+    done
+}
+package=(
+        vulkan-intel intel-ucode libva-intel-driver
+        xf86-video-intel lib32-vulkan-intel 
+)
+for pkg in "${packages[@]}"; do
+    Install_pacman "$pkg"
+done
 
 echo
+
+
+else
+    echo "Processador inválido. Digite 'amd' ou 'intel'."
+    exit 1
+fi
+
+# Continua com o resto do script abaixo
+
+
+echo "Instalando pacotes necessarios do systema com pacman"
+sleep 1
+
 Install_pacman() {
     package=$1
     for i in {1..3}; do
@@ -85,15 +143,13 @@ packages=(
     breeze-gtk breeze-icons nwg-look bluez bluez-utils bluez-tools 
     kio kde-cli-tools sddm xorg network-manager-applet
     exfat-utils btrfs-progs xfsprogs jfsutils f2fs-tools
-    reiserfsprogs nilfs-utils udftools e2fsprogs kitty gedit
+    nilfs-utils udftools e2fsprogs kitty gedit libva
     mangohud telegram-desktop discord wine filelight pacman-contrib
-    wine-gecko wine-mono winetricks curl vulkan-radeon vulkan-icd-loader 
-    lib32-mesa lm_sensors lib32-vulkan-radeon lib32-vulkan-icd-loader 
-    mesa-demos xorg-xdpyinfo amd-ucode mesa-utils glfw
-    mesa llvm lib32-llvm vulkan-tools xf86-video-amdgpu xf86-video-ati
-    lvm2 zip timeshift lutris
-    linux-lts-headers linux-zen-headers steam gimp antimicrox
-    celluloid mpv vlc android-tools hyprutils hyprland-qtutils qt6-5compat
+    wine-gecko wine-mono winetricks curl vulkan-tools vulkan-icd-loader lib32-vulkan-icd-loader
+    lib32-mesa lm_sensors mesa-demos xorg-xdpyinfo mesa-utils glfw
+    mesa llvm lib32-llvm lvm2 zip timeshift lutris linux-lts-headers 
+    linux-zen-headers steam gimp antimicrox celluloid mpv vlc 
+    android-tools hyprutils hyprland-qtutils qt6-5compat
     qt6-declarative qt6-svg gnome-disk-utility gnome-calendar gnome-calculator
     ksnip swaync hyprland xorg-server xorg-xinit epapirus-icon-theme
     )
@@ -102,53 +158,6 @@ for pkg in "${packages[@]}"; do
     Install_pacman "$pkg"
 done
 
-elif [ "$resposta" == "n" ]; then
-
-        # Executa o comando se a resposta for "não"
-
-echo "Você escolheu NÃO. Executando a instalação p/Intel"
-echo
-Install_pacman() {
-    package=$1
-    for i in {1..3}; do
-        if sudo pacman -S --noconfirm --needed "$package"; then
-            echo "$package instalado com sucesso."
-            break
-        else
-            echo "Erro ao instalar $package. Tentativa $i de 3..."
-            pause
-        fi
-    done
-}
-packages=(
-    git wget unzip gum rofi wofi unrar okular waybar swww dolphin dolphin-plugins
-    ark firefox loupe xdg-desktop-portal xdg-desktop-portal-gnome
-    xdg-desktop-portal-gtk xdg-desktop-portal-hyprland blueman bluedevil
-    xdg-desktop-portal-wlr xdg-user-dirs xdg-user-dirs-gtk
-    xdg-utils archlinux-xdg-menu btop ttf-font-awesome noto-fonts
-    noto-fonts-emoji noto-fonts-extra ttf-firacode-nerd
-    ttf-jetbrains-mono-nerd swayidle polkit-gnome bash-completion
-    ntfs-3g ffmpegthumbnailer ffmpegthumbs volumeicon pavucontrol
-    pamixer notification-daemon wl-clipboard wayland-utils
-    clinfo alsa-utils  imagemagick adw-gtk-theme breeze breeze5
-    breeze-gtk breeze-icons nwg-look bluez bluez-utils bluez-tools 
-    kio kde-cli-tools sddm xorg network-manager-applet
-    exfat-utils btrfs-progs xfsprogs jfsutils f2fs-tools
-    reiserfsprogs nilfs-utils udftools e2fsprogs kitty gedit
-    mangohud telegram-desktop discord wine filelight pacman-contrib
-    wine-gecko wine-mono winetricks curl vulkan-intel vulkan-icd-loader 
-    lib32-mesa lm_sensors lib32-vulkan-radeon lib32-vulkan-icd-loader 
-    mesa-demos xorg-xdpyinfo intel-ucode mesa-utils glfw
-    mesa llvm lib32-llvm vulkan-tools xf86-video-intel lvm2 zip timeshift lutris
-    linux-lts-headers linux-zen-headers steam gimp antimicrox
-    celluloid mpv vlc android-tools hyprutils hyprland-qtutils qt6-5compat
-    qt6-declarative qt6-svg gnome-disk-utility gnome-calendar gnome-calculator
-    ksnip swaync hyprland xorg-server xorg-xinit epapirus-icon-theme
-    )
-
-for pkg in "${packages[@]}"; do
-    Install_pacman "$pkg"
-done
 echo
 echo    
 sleep 2
@@ -191,8 +200,9 @@ install_yay() {
     done
 }
     package_yay=(
-    swayosd-git waypaper hyprswitch qt5ct-kde qt6ct-kde grimblast swaylock-effects
-    wlogout protonup-qt-bin clipman clipse winff heroic-games-launcher-bin visual-studio-code-bin 
+    swayosd-git waypaper hyprswitch qt5ct-kde qt6ct-kde grimblast
+    swaylock-effects reiserfsprogs wlogout protonup-qt-bin clipman
+    clipse winff heroic-games-launcher-bin visual-studio-code-bin 
     )
     
        
@@ -236,13 +246,13 @@ echo "Extraindo configurações nas suas devidas pastas"
 echo
 sleep 2
 
-cd $HOME/pos_install
+cd $HOME/pos_install_hyprland
 
 if [ -f "$(pwd)/configs.tar.gz" ]; then
     tar -xzvf "$(pwd)/configs.tar.gz" -C "$HOME/"
     echo "Arquivo configs.tar.gz extraído para ~/configs com sucesso."
 else
-    echo "onfigs.tar.gz não encontrado no diretório atual."
+    echo "configs.tar.gz não encontrado no diretório atual."
 fi  
 
 echo
@@ -286,10 +296,11 @@ echo
 cd $HOME/
 echo
 echo
+sleep 1
 echo "Removendo os arquivos baixados"
 sleep 3
 
-rm -fr pos_install
+rm -fr pos_install_hyprland
 
 echo "Vamos reiniciar a sua maquina e após isso estára pronta para uso"
 echo "Obrigado"
