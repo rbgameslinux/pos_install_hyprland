@@ -24,7 +24,7 @@ echo "Este script fará alterações no seu sistema."
 echo "Irá adicionar suporte ao aur via yay e instalará pacotes do aur."
 echo "Ele instalará pacotes e irá adicionar o usuário ao grupo 'wheel'."
 echo "Lembrando que ele foi feito para instalações minimal do archlinux."
-echo "ATENCÃO SÓ GPU AMD"
+echo "ATENCÃO SÓ GPU AMD !!!"
 echo "Utilize por sua conta e risco"
 echo "Tem certeza de que deseja prosseguir."
 echo
