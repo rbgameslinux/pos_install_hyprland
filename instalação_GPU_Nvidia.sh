@@ -167,7 +167,7 @@ sleep 2
 
 #Obrigado x86mota
 
-echo "Os critos p/config da Nvidia são do x86mota (obrigado)"
+echo "Os creditos p/config da Nvidia são do x86mota (obrigado)"
 sleep 2
 
 Modules=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)
