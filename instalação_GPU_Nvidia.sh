@@ -99,7 +99,7 @@ packages=(
     qt6-declarative qt6-svg gnome-disk-utility gnome-calendar gnome-calculator
     ksnip swaync hyprland xorg-server xorg-xinit epapirus-icon-theme
     libva libva-nvidia-driver nvidia-dkms nvidia-settings nvidia-utils
-    vulkan-headers lib32-nvidia-utils
+    vulkan-headers lib32-nvidia-utils nvidia
     )
     
 for pkg in "${packages[@]}"; do
@@ -149,7 +149,7 @@ packages=(
     qt6-declarative qt6-svg gnome-disk-utility gnome-calendar gnome-calculator
     ksnip swaync hyprland xorg-server xorg-xinit epapirus-icon-theme
     libva-nvidia-driver nvidia-dkms nvidia-settings nvidia-utils
-    vulkan-headers lib32-nvidia-utils
+    vulkan-headers lib32-nvidia-utils nvidia
     )
 
 for pkg in "${packages[@]}"; do
