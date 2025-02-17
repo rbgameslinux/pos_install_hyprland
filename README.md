@@ -11,13 +11,13 @@ Passos que se deve tomar antes da instalação !!!
 
 (se poder assista o video explicativo) link
 
+sudo pacman -S git nano
+
 sudo nano /etc/makepkg.conf
 "procurar a linha"
 
 #MAKEFLAGS="-j12" tirar o comentario (#) do inicio dessa linha e aonde está 12 mudar p/quantidade
 de nucleos do seu cpu.
-
-sudo pacman -S git 
 
 Após isso baixe  o script 
 
