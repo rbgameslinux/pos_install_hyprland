@@ -40,7 +40,7 @@ pacotes=(
     linux-zen-headers steam gimp antimicrox celluloid mpv vlc 
     android-tools hyprutils hyprland-qtutils qt6-5compat
     qt6-declarative qt6-svg gnome-disk-utility gnome-calendar gnome-calculator
-    ksnip swaync hyprland xorg-server xorg-xinit epapirus-icon-theme
+    ksnip swaync hyprland xorg-server xorg-xinit epapirus-icon-theme fastfetch
 )
 pacotes_yay=(
     swayosd-git waypaper  qt5ct-kde qt6ct-kde grimblast
