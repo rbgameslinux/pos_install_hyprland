@@ -144,7 +144,7 @@ packages=(
     breeze-gtk breeze-icons nwg-look bluez bluez-utils bluez-tools 
     kio kde-cli-tools sddm xorg network-manager-applet
     exfat-utils btrfs-progs xfsprogs jfsutils f2fs-tools
-    nilfs-utils udftools e2fsprogs kitty gedit libva
+    nilfs-utils udftools e2fsprogs kitty gedit libva fastfetch
     mangohud telegram-desktop discord wine filelight pacman-contrib
     wine-gecko wine-mono winetricks curl vulkan-tools vulkan-icd-loader lib32-vulkan-icd-loader
     lib32-mesa lm_sensors mesa-demos xorg-xdpyinfo mesa-utils glfw
