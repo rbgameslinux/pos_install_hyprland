@@ -43,6 +43,16 @@ resposta=$(echo "$resposta" | tr '[:upper:]' '[:lower:]')
 if [[ "$resposta" == "sim" || "$resposta" == "s" ]]; then
   echo "Você concordou! Continuando..."
 
+echo -e "\033[1;34m"
+echo "\`7MM\"\"\"Mq.  \`7MM\"\"\"Yp,       .g8\"\"\"bgd                                             ";
+echo "  MM   \`MM.   MM     Yb    .dP'     \`M                                                      ";
+echo "  MM   ,M9    MM     dP    dM'       \`   ,6\"Yb.  \`7MMpMMMb.pMMMb.   .gP\"Ya  ,pP\"Ybd      ";
+echo "  MMmmdM9     MM\"\"\"bg.     MM           8)   MM    MM    MM    MM  ,M'   Yb 8I   \`\"      ";
+echo "  MM  YM.     MM     \`Y    MM.    \`7MMF' ,pm9MM    MM    MM    MM  8M\"\"\"\"\"\" \`YMMMa.  ";
+echo "  MM   \`Mb.   MM     ,9    \`Mb.     MM  8M   MM    MM    MM    MM  YM.    , L.   I8         ";
+echo ".JMML. .JMM..JMMmmmd9        \`\"bmmmdPY  \`Moo9^Yo..JMML  JMML  JMML. \`Mbmmd' M9mmmP'       ";
+echo -e "\033[0m\n"
+
 #                           seu script aqui
  #######################################################################     
 
