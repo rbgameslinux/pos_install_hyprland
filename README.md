@@ -52,5 +52,6 @@ Erros e sugestões podem ser colocadas em Issues, quem quiser ajudar no projeto 
 Creditos:
 
 x86mota (Nvidia)
+
 Israel  (algumas dotfiles)
 
