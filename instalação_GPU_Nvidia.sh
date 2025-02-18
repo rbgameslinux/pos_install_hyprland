@@ -1,137 +1,25 @@
 #!/bin/bash
 
+#!/bin/bash
+
 ##########################################################################
 #    Autor = Rodrigo (Rbgames Linux)                                     #
 #    Tecnico em TI, tecnico em redes e finalizando tecnologo em Redes    #
 #    E-mail = rbgameslinux@gmail.com                                     #
 ##########################################################################
 
-    # Exibir "leia-me"
-
-clear
-echo "==============================="
-echo "     LEIA-ME ANTES DE USAR     "
-echo "==============================="
-echo
-echo
-echo  "#########################################################"
-echo  "# Autor = Rodrigo (Rbgames Linux)                       #"
-echo  "# E-mail = rbgameslinux@gmail.com                       #"
-echo  "#########################################################"
-echo  
-echo "Este script foi feito para Archlinux com placas de video Nvidia."
-echo "Suporte p/Nvidia experimental"
-echo "Este script fará alterações no seu sistema."
-echo "Irá adicionar suporte ao aur via yay e instalará pacotes do aur."
-echo "Ele instalará pacotes e irá adicionar o usuário ao grupo 'wheel'."
-echo "Lembrando que ele foi feito para instalações minimal do archlinux."
-echo "ATENCÃO SÓ GPU Nvidia !!!"
-echo "Utilize por sua conta e risco"
-echo "Tem certeza de que deseja prosseguir."
-echo
-echo
-echo "Se você não concorda, digite 'não' ou 'n'."
-echo "Se concorda, digite 'sim' ou 's' para continuar."
-echo
-
- # confirmação do usuário
-read -p "Você concorda em continuar? (sim/não): " resposta
-
-    # Converter para minúsculas 
-resposta=$(echo "$resposta" | tr '[:upper:]' '[:lower:]')
-
-    # Verificar a resposta
-if [[ "$resposta" == "sim" || "$resposta" == "s" ]]; then
-  echo "Você concordou! Continuando..."
-
-#                           seu script aqui
- #######################################################################     
-
-# Pergunta se o processador é AMD ou Intel ?
-
-echo "Seu processador é AMD ou Intel?"
-sleep 1
-echo "Digite 'amd' para AMD ou 'intel' para Intel."
-read processador
-
-# Verifica a resposta 
-
-if [ "$processador" == "amd" ]; then
-    echo "Instalando pacotes p/AMD ..."
-
-Install_pacman() {
-    package=$1
-    for i in {1..3}; do
-        if sudo pacman -S --noconfirm --needed "$package"; then
-            echo "$package instalado com sucesso."
-            break
-        else
-            echo "Erro ao instalar $package. Tentativa $i de 3..."
-            pause
-        fi
-    done
-}
-package=(
-    lib32-vulkan-radeon amd-ucode
-    xf86-video-amdgpu xf86-video-ati vulkan-radeon
-)
-for pkg in "${packages[@]}"; do
-    Install_pacman "$pkg"
-done
-
-echo
-
-elif [ "$processador" == "intel" ]; then
-    echo "Instalando pacotes p/Intel ..."
-   
-   Install_pacman() {
-    package=$1
-    for i in {1..3}; do
-        if sudo pacman -S --noconfirm --needed "$package"; then
-            echo "$package instalado com sucesso."
-            break
-        else
-            echo "Erro ao instalar $package. Tentativa $i de 3..."
-            pause
-        fi
-    done
-}
-package=(
-        vulkan-intel intel-ucode libva-intel-driver
-        xf86-video-intel lib32-vulkan-intel 
-)
-for pkg in "${packages[@]}"; do
-    Install_pacman "$pkg"
-done
-
-echo
-
-
-else
-    echo "Processador inválido. Digite 'amd' ou 'intel'."
-    exit 1
-fi
-
-# Continua com o resto do script abaixo
-
-
-echo "Instalando pacotes necessarios do systema com pacman"
-sleep 1
-
-Install_pacman() {
-    package=$1
-    for i in {1..3}; do
-        if sudo pacman -S --noconfirm --needed "$package"; then
-            echo "$package instalado com sucesso."
-            break
-        else
-            echo "Erro ao instalar $package. Tentativa $i de 3..."
-            pause
-        fi
-    done
-}
-packages=(
-    git wget unzip gum rofi wofi unrar okular waybar swww dolphin dolphin-plugins
+# ==================== VARIÁVEIS ==================== #
+# Global Variables
+Note='[\033[1;34mNOTA\033[0m]'
+OK='[\033[1;32mOK\033[0m]'
+Action='[\033[1;33mAÇÃO\033[0m]'
+Error='[\033[1;31mERRO\033[0m]'
+Clear='\033[1A\033[K'
+AMD=(amd-ucode lib32-vulkan-radeon xf86-video-amdgpu xf86-video-ati vulkan-radeon)
+INTEL=(intel-ucode vulkan-intel intel-ucode libva-intel-driver xf86-video-intel lib32-vulkan-intel)
+NVIDIA=(libva libva-nvidia-driver mesa nvidia-dkms nvidia-settings nvidia-utils vulkan-headers vulkan-icd-loader vulkan-tools lib32-nvidia-utils lib32-vulkan-icd-loader)
+pacotes=(
+    base-devel git wget unzip gum rofi wofi unrar okular waybar swww dolphin dolphin-plugins
     ark firefox loupe xdg-desktop-portal xdg-desktop-portal-gnome
     xdg-desktop-portal-gtk xdg-desktop-portal-hyprland blueman bluedevil
     xdg-desktop-portal-wlr xdg-user-dirs xdg-user-dirs-gtk
@@ -152,66 +40,51 @@ packages=(
     linux-zen-headers steam gimp antimicrox celluloid mpv vlc 
     android-tools hyprutils hyprland-qtutils qt6-5compat
     qt6-declarative qt6-svg gnome-disk-utility gnome-calendar gnome-calculator
-    ksnip swaync hyprland xorg-server xorg-xinit epapirus-icon-theme
-    libva-nvidia-driver nvidia-dkms nvidia-settings nvidia-utils
-    vulkan-headers lib32-nvidia-utils nvidia
-    )
-    
-for pkg in "${packages[@]}"; do
-    Install_pacman "$pkg"
-done
+    ksnip swaync hyprland xorg-server xorg-xinit epapirus-icon-theme fastfetch
+)
+pacotes_yay=(
+    swayosd-git waypaper  qt5ct-kde qt6ct-kde grimblast
+    swaylock-effects reiserfsprogs wlogout protonup-qt-bin clipman
+    clipse heroic-games-launcher-bin visual-studio-code-bin 
+)
 
+# ================================================== #
 
-echo "Fazendo configuração necessaria p/Nvidia"
-sleep 2
+# ==================== FUNÇÕES ==================== #
 
-#Obrigado x86mota
+function _UserConfirm {
+    local prompt="$1"
+    read -rp "$prompt"
 
-echo "Os creditos p/config da Nvidia são do x86mota (obrigado)"
-sleep 2
+    case "${REPLY,,}" in
+    s|sim)
+        echo "Você concordou! Continuando..."
+        sleep 3
+        clear
+        ;;
+    n|não)
+        echo "Você não concordou. O script será encerrado."
+        sleep 3
+        clear
+        exit 1
+        ;;
+    *)
+        _UserConfirm "${Action} - Digite [S]im ou [N]ão: "
+esac
+}
 
-Modules=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)
-for Module in "${Modules[@]}"; do
-    if ! grep -wq "^MODULES=.*${Module}" /etc/mkinitcpio.conf; then
-        sudo sed -i "s/^MODULES=(\(.*\))/MODULES=(\1${Module} )/" /etc/mkinitcpio.conf
-    fi
-done
-
-sudo bash -c "echo 'options nvidia_drm modeset=1 fbdev=1' >> /etc/modprobe.d/nvidia.conf"
-
-sudo mkinitcpio -P &>/dev/null
-
-# Enable nvidia source
-sed -i "s|^#\(.*source = ./src/nvidia.conf.*\)|\1|" "${HOME}/.config/hypr/hyprland.conf"
-
-echo
-echo    
-sleep 2
-
-    #instalar o yay p/ter suporte ao aur.
-
-echo
-echo
-echo "Instalando o suporte ao aur-helper com yay"
-sleep 2
-echo
-echo
-cd $HOME/
-    git clone https://aur.archlinux.org/yay-bin.git
-    cd yay-bin
-    makepkg -si --noconfirm
-    cd $HOME/
-echo
-echo
-sleep 3
-echo
-echo
-    #Instalar pacotes do aur com yay 
-echo "Instalando pacotes necessarios do aur"
-echo
-sleep 3
-echo
-echo
+Install_pacman() {
+    package=$1
+    for i in {1..3}; do
+        if sudo pacman -S --noconfirm --needed "$package"; then
+            echo "${OK} - $package instalado com sucesso."
+            break
+        else
+            echo "${Note} - Erro ao instalar $package. Tentativa $i de 3..."
+            pause
+        fi
+    done
+}
 
 install_yay() {
     package_yay=$1
@@ -225,148 +98,187 @@ install_yay() {
         fi
     done
 }
-    package_yay=(
-    swayosd-git waypaper  qt5ct-kde qt6ct-kde grimblast
-    swaylock-effects reiserfsprogs wlogout protonup-qt-bin clipman
-    clipse heroic-games-launcher-bin visual-studio-code-bin 
-    )
-    
-       
-for pkg in "${package_yay[@]}"; do
+
+# ================================================== #
+
+# Exibir "leia-me"
+clear
+echo -e "
+===============================
+     LEIA-ME ANTES DE USAR     
+===============================
+#########################################################
+# Autor = Rodrigo (Rbgames Linux)                       #
+# E-mail = rbgameslinux@gmail.com                       #
+#########################################################
+ 
+Este script foi feito para Archlinux com placas de video Nvidia.
+Suporte p/Nvidia experimental
+Este script fará alterações no seu sistema.
+Irá adicionar suporte ao aur via yay e instalará pacotes do aur.
+Ele instalará pacotes e irá adicionar o usuário ao grupo 'wheel'.
+Lembrando que ele foi feito para instalações minimal do archlinux.
+ATENCÃO SÓ GPU Nvidia !!!
+Utilize por sua conta e risco
+Tem certeza de que deseja prosseguir.
+Se você não concorda, digite 'não' ou 'n'.
+Se concorda, digite 'sim' ou 's' para continuar.
+"
+
+# confirmação do usuário
+_UserConfirm "${Action} - Você concorda em continuar? (sim/não): "
+
+
+echo -e "\033[1;34m"
+echo "\`7MM\"\"\"Mq.  \`7MM\"\"\"Yp,       .g8\"\"\"bgd                                             ";
+echo "  MM   \`MM.   MM     Yb    .dP'     \`M                                                      ";
+echo "  MM   ,M9    MM     dP    dM'       \`   ,6\"Yb.  \`7MMpMMMb.pMMMb.   .gP\"Ya  ,pP\"Ybd      ";
+echo "  MMmmdM9     MM\"\"\"bg.     MM           8)   MM    MM    MM    MM  ,M'   Yb 8I   \`\"      ";
+echo "  MM  YM.     MM     \`Y    MM.    \`7MMF' ,pm9MM    MM    MM    MM  8M\"\"\"\"\"\" \`YMMMa.  ";
+echo "  MM   \`Mb.   MM     ,9    \`Mb.     MM  8M   MM    MM    MM    MM  YM.    , L.   I8         ";
+echo ".JMML. .JMM..JMMmmmd9        \`\"bmmmdPY  \`Moo9^Yo..JMML  JMML  JMML. \`Mbmmd' M9mmmP'       ";
+echo -e "\033[0m\n"
+
+
+# Detecta a fabricante do CPU e insere o pacote de microcode adequado à lista de pacotes
+cpu=$(grep -m 1 'vendor_id' /proc/cpuinfo | awk '{print $NF}')
+case ${cpu} in
+  AuthenticAMD)
+    pacotes+=("${AMD[@]}")
+    ;;
+  GenuineIntel)
+    pacotes+=("${INTEL[@]}")
+    ;;
+  *) exit 0 ;;
+esac
+
+# Retorna quais kernels estão instalados e insere os headers à lista de pacotes
+if [[ -d "usr/lib/modules" ]]; then
+    for kernel in $(cat /usr/lib/modules/*/pkgbase); do
+        pacotes+=("${kernel}-headers")
+    done
+else
+    kernel=$(uname -s | tr '[:upper:]' '[:lower:]')
+    pacotes+=("${kernel}-headers")
+fi
+
+# Habilita o repositório multilib
+PacmanPath="/etc/pacman.conf"
+MultilibMsg="Habilitando repositório multilib"
+grep -q '^#\[multilib\]' "${PacmanPath}" && {
+  echo -e "${Note} - ${MultilibMsg}"
+  sudo sed -i '/^#\[multilib\]/{s/^#//;n;s/^#//;}' "${PacmanPath}" && {
+    echo -e "${Clear}${OK} - ${MultilibMsg}"
+  } || echo -e "${Clear}${Error} - ${MultilibMsg}"
+}
+
+# Atualiza o Sistema 
+echo -e "${Note} - Atualizando o sistema"
+if sudo pacman -Syu --noconfirm --needed &>/dev/null; then
+    echo -e "${Clear}${OK} - Sistema atualizado"
+else 
+    echo -e "${Clear}${Error} - A atualização do sistema falhou." 
+    exit 1
+fi
+
+# Adiona os pacotes da NVIDIA à lista de pacotes 
+pacotes+=("${NVIDIA[@]}")
+
+# Instala os pacotes
+echo -e "\n\n${Note} - Instalando pacotes necessarios do systema com pacman\n"
+sleep 2
+for pkg in "${pacotes[@]}"; do
+    Install_pacman "$pkg"
+done
+
+echo -e "\n\n${Note} - Fazendo configuração necessaria para Nvidia\n"
+sleep 2
+# Configuração para o GRUB
+if pacman -Q | grep grub &>/dev/null && [ -f "/boot/grub/grub.cfg" ]; then
+    GrubConfigFile="/etc/default/grub"
+    NvidiaModule="nvidia_drm.modeset=1"
+    ! grep -q "${NvidiaModule}" "${GrubConfigFile}" && {
+        sudo sed -i "s/\(GRUB_CMDLINE_LINUX_DEFAULT=\"[^\"]*\)/\1 ${NvidiaModule}/" "${GrubConfigFile}"
+    }
+fi
+
+# DRM kernel
+Modules=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)
+for Module in "${Modules[@]}"; do
+    if ! grep -wq "^MODULES=.*${Module}" /etc/mkinitcpio.conf; then
+        sudo sed -i "s/^MODULES=(\(.*\))/MODULES=(\1${Module} )/" /etc/mkinitcpio.conf
+    fi
+done
+
+sudo bash -c "echo 'options nvidia_drm modeset=1 fbdev=1' >> /etc/modprobe.d/nvidia.conf"
+
+sudo mkinitcpio -P &>/dev/null
+
+# Instalar o yay para ter suporte ao aur.
+echo -e "\n\n${Note} - Instalando o suporte ao aur-helper com YAY\n"
+sleep 2
+git clone https://aur.archlinux.org/yay-bin.git /tmp/aur
+makepkg -si --noconfirm --dir /tmp/aur
+
+# Instala pacotes do AUR
+echo -e "\n\n${Note} - Instalando pacotes necessarios do AUR\n"
+sleep 2
+for pkg in "${pacotes_yay[@]}"; do
     install_yay "$pkg"
-done    
-      
-echo
-echo
-echo
-        # Obter o nome do usuário atual
-        
-    usuario=$(whoami)
+done
 
-echo "Adicionando usuário ao grupo 'wheel'"
+# Colocando o dolphin com padrão do sistema
+xdg-mime default org.kde.dolphin.desktop inode/directoryxdg-mime default org.kde.dolphin.desktop inode/directory
+
+# Habilitando serviços
+echo -e "\n\n${Note} - Habilitando sddm e bluetooth"
 sleep 2
-        # Adiciona o usuário ao grupo 'wheel'
-        
-    sudo usermod -aG wheel "$usuario"
-    sudo usermod -aG lp $USER
+systemctl enable sddm.service ; systemctl start user@970.service ; sudo systemctl start bluetooth.service ; sudo systemctl enable bluetooth.service
 
-        #Só rodar no terminal
-        
-    xdg-user-dirs-update 
-
-echo "Colocando o dolphin com padrão do sistema"
-sleep 2
-        #coloca o dolphin com padrão do sistema
-        
-    xdg-mime default org.kde.dolphin.desktop inode/directoryxdg-mime default org.kde.dolphin.desktop inode/directory 
-
-echo "Habilitando o sddm, bluetooth no sitema"
-sleep 2
-        #Habilita o sddm
-
-    systemctl enable sddm.service ; systemctl start user@970.service ; sudo systemctl start bluetooth.service ; sudo systemctl enable bluetooth.service
-echo
-sleep 2
-echo
-echo "Extraindo configurações nas suas devidas pastas"
-echo
-sleep 2
-
-cd $HOME/pos_install_hyprland
-
+# Extraindo configurações
+echo -e "\n\n${Note} - Extraindo configurações nas suas devidas pastas\n"
+cd "${HOME}/pos_install_hyprland" || exit
 if [ -f "$(pwd)/configs_Nvidia.tar.gz" ]; then
     tar -xzvf "$(pwd)/configs_Nvidia.tar.gz" -C "$HOME/"
-    echo "Arquivo configs_Nvidia.tar.gz extraído para ~/configs_Nvidia com sucesso."
+    echo "${OK} - Arquivo configs_Nvidia.tar.gz extraído para ~/configs_Nvidia com sucesso."
 else
-    echo "configs_Nvidia.tar.gz não encontrado no diretório atual."
-fi  
+    echo "${Error} - configs_Nvidia.tar.gz não encontrado no diretório atual."
+fi
 
-echo
-sleep 2
-echo "Copiando p/.config"
-cp -r $HOME/configs_Nvidia/* ~/.config  
-rm -fr $HOME/configs_Nvidia
+echo "${Note} - Copiando para ${HOME}/.config"
+cp -r "$HOME/configs_Nvidia/"* "${HOME}/.config/"  
+rm -rf "$HOME/configs_Nvidia"
 
 sleep 2
-
-    #sudo tar -xzvf simple-sddm-2.tar.gz -C /usr/share/sddm/themes/
     
 if [ -f "$(pwd)/simple-sddm-2.tar.gz" ]; then
     sudo tar -xzvf "$(pwd)/simple-sddm-2.tar.gz" -C "/usr/share/sddm/themes/"
-    echo "Arquivo simple-sddm-2.tar.gz extraído para /usr/share/sddm/themes/ com sucesso."
+    echo "${OK} - Arquivo simple-sddm-2.tar.gz extraído para /usr/share/sddm/themes/ com sucesso."
 else
-    echo "simple-sddm-2.tar.gz não encontrado no diretório atual."
+    echo "${Error} - simple-sddm-2.tar.gz não encontrado no diretório atual."
 fi
 
 sleep 2
-
-    #sudo tar -xzvf sddm.conf.tar.gz -C /etc/
 
 if [ -f "$(pwd)/sddm.conf.tar.gz" ]; then
     sudo tar -xzvf "$(pwd)/sddm.conf.tar.gz" -C "/etc/"
-    echo "Arquivo sddm.conf.tar.gz extraído para /etc/ com sucesso."
+    echo "${OK} - Arquivo sddm.conf.tar.gz extraído para /etc/ com sucesso."
 else
-    echo "sddm.conf.tar.gz não encontrado no diretório atual."
+    echo "${Error} - sddm.conf.tar.gz não encontrado no diretório atual."
 fi    
    
-echo    
 sleep 2
-echo 
-    
-    
-echo "Descompactação finalizada com sucesso"
-echo
 
-sleep 2
-echo
-cd $HOME/
-echo
-echo
-sleep 1
-echo "Removendo os arquivos baixados"
-sleep 3
+echo -e "${OK}\nDescompactação finalizada com sucesso\n"
 
+echo -e "\n${Note} - Removendo os arquivos baixados"
+cd "${HOME}" || exit
 rm -fr pos_install_hyprland
 
-echo "Vamos reiniciar a sua maquina e após isso estára pronta para uso"
-echo "Obrigado"
-echo
-echo "Reiniciando" 
-echo
-echo
-echo
-echo "Pressione Enter para reiniciar, ou CTRL+C para cancelar."
-read -p ""
-echo
-echo
-sudo reboot
-
-###################final do script #########################
-
-else
-    # Caso o usuário digite algo diferente
-    echo "Resposta inválida! Por favor, digite 's' ou 'n'."
+#  Instalação completa
+echo -e "${OK} - Instalação Completa\n"
+echo -en "${Action} - Você gostaria de reiniciar o computador agora? (s/n): "
+read -rp
+if [[ "$REPLY" =~ [Ss]$ ]]; then
+    systemctl reboot
 fi
- 
-else
-  echo "Você não concordou. O script será encerrado."
-  sleep 3
-  exit 1
-fi
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
