@@ -15,7 +15,7 @@ Passos que se deve tomar antes da instalação !!!
 
 video 1 https://youtu.be/6KrKxNsAdYo
 
-video 2 
+video 2 https://youtu.be/ezOm_47syUM
 
 -------------------------------------------------------------
 
