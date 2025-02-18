@@ -15,7 +15,7 @@ Passos que se deve tomar antes da instalação !!!
 
 video 1 https://youtu.be/6KrKxNsAdYo
 
-video 2 
+video 2 https://youtu.be/ezOm_47syUM
 
 -------------------------------------------------------------
 
@@ -36,6 +36,8 @@ cd pos_install_hyprland
 chmod +x instalação_GPU_AMD.sh  ou instalação_GPU_Nvidia.sh
 
 ./instalação_GPU_AMD.sh ou ./instalação_GPU_Nvidia.sh
+
+Após reiniciar, na tela de login você tem que alterar em session : hyprland (uwsm-manager) para hyprland !!!
 
 ---------------------------------------------------------------
 
