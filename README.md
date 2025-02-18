@@ -58,3 +58,7 @@ https://github.com/x86mota
 
 Israel  (algumas dotfiles)
 
+
+![image](https://github.com/user-attachments/assets/25fa406d-522a-4fe2-baa6-c0c9c8ff7680)
+
+
