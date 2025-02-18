@@ -37,6 +37,8 @@ chmod +x instalação_GPU_AMD.sh  ou instalação_GPU_Nvidia.sh
 
 ./instalação_GPU_AMD.sh ou ./instalação_GPU_Nvidia.sh
 
+Após reiniciar, na tela de login você tem que alterar em session : hyprland (uwsm-manager) para hyprland !!!
+
 ---------------------------------------------------------------
 
 E já vem personalizado e configurado conforme foi mostrado nos videos da playlist do canal 
