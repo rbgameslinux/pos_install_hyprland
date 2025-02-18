@@ -60,5 +60,13 @@ Israel  (algumas dotfiles)
 
 
 ![image](https://github.com/user-attachments/assets/25fa406d-522a-4fe2-baa6-c0c9c8ff7680)
+![image](https://github.com/user-attachments/assets/ebe0ae1b-fc03-4ab4-a7f3-3b484f6513d8)
+![image](https://github.com/user-attachments/assets/44e3b450-b8b3-4e60-8503-de84f5d987e9)
+![image](https://github.com/user-attachments/assets/9010f5ac-1ac1-47a3-be71-36c72d06702f)
+![image](https://github.com/user-attachments/assets/66d0717b-59a7-4603-9e3c-49ae03a2395b)
+
+
+
+
 
 
