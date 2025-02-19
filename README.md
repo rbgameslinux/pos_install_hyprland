@@ -51,6 +51,9 @@ https://youtube.com/playlist?list=PLZymN5kq4bLm2CHxa06M1lwQnWMoWjwJh&si=4bRBaNhB
 
 Erros e sugestões podem ser colocadas em Issues, quem quiser ajudar no projeto seja bem vindo.
 
+
+![credito-removebg-preview](https://github.com/user-attachments/assets/472f3a56-b85d-49c0-a863-0185e792bb05)
+
 Creditos:
 
 x86mota (Nvidia)
