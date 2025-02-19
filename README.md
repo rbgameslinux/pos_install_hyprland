@@ -51,8 +51,8 @@ https://youtube.com/playlist?list=PLZymN5kq4bLm2CHxa06M1lwQnWMoWjwJh&si=4bRBaNhB
 
 Erros e sugestões podem ser colocadas em Issues, quem quiser ajudar no projeto seja bem vindo.
 
+![credito-removebg-preview](https://github.com/user-attachments/assets/e63878f1-d392-484a-acb8-a21d6b318ea2)
 
-![credito-removebg-preview](https://github.com/user-attachments/assets/472f3a56-b85d-49c0-a863-0185e792bb05)
 
 Creditos:
 
