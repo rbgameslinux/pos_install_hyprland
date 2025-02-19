@@ -41,7 +41,9 @@ resposta=$(echo "$resposta" | tr '[:upper:]' '[:lower:]')
 
     # Verificar a resposta
 if [[ "$resposta" == "sim" || "$resposta" == "s" ]]; then
-  echo "Você concordou! Continuando..."
+echo "Você concordou! Continuando..."
+
+clear
 
 echo -e "\033[1;34m"
 echo "\`7MM\"\"\"Mq.  \`7MM\"\"\"Yp,       .g8\"\"\"bgd                                             ";
