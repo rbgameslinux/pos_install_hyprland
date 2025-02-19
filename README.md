@@ -39,6 +39,8 @@ chmod +x instalação_GPU_AMD.sh  ou instalação_GPU_Nvidia.sh
 
 Após reiniciar, na tela de login você tem que alterar em session : hyprland (uwsm-manager) para hyprland !!!
 
+OBS: o script p/Nvidia não funciona em maquina virtual, o da AMD pode ser testado em maquina virtual .
+
 ---------------------------------------------------------------
 
 E já vem personalizado e configurado conforme foi mostrado nos videos da playlist do canal 
