@@ -4,6 +4,7 @@
 
 ##########################################################################
 #    Autor = Rodrigo (Rbgames Linux)                                     #
+#    Correçoes/ajustes = x86mota Felipe cruz https://github.com/x86mota  #
 #    Tecnico em TI, tecnico em redes e finalizando tecnologo em Redes    #
 #    E-mail = rbgameslinux@gmail.com                                     #
 ##########################################################################
