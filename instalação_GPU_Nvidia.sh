@@ -10,7 +10,6 @@
 ##########################################################################
 
 # ==================== VARIÁVEIS ==================== #
-# Global Variables
 Note='[\033[1;34mNOTA\033[0m]'
 OK='[\033[1;32mOK\033[0m]'
 Action='[\033[1;33mAÇÃO\033[0m]'
@@ -194,6 +193,7 @@ done
 
 echo -e "\n\n${Note} - Fazendo configuração necessaria para Nvidia\n"
 sleep 2
+
 # Configuração para o GRUB
 if pacman -Q | grep grub &>/dev/null && [ -f "/boot/grub/grub.cfg" ]; then
     GrubConfigFile="/etc/default/grub"
@@ -201,6 +201,8 @@ if pacman -Q | grep grub &>/dev/null && [ -f "/boot/grub/grub.cfg" ]; then
     ! grep -q "${NvidiaModule}" "${GrubConfigFile}" && {
         sudo sed -i "s/\(GRUB_CMDLINE_LINUX_DEFAULT=\"[^\"]*\)/\1 ${NvidiaModule}/" "${GrubConfigFile}"
     }
+
+    sudo grub-mkconfig -o /boot/grub/grub.cfg
 fi
 
 # DRM kernel
