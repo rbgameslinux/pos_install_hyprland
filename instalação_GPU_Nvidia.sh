@@ -201,6 +201,8 @@ if pacman -Q | grep grub &>/dev/null && [ -f "/boot/grub/grub.cfg" ]; then
     ! grep -q "${NvidiaModule}" "${GrubConfigFile}" && {
         sudo sed -i "s/\(GRUB_CMDLINE_LINUX_DEFAULT=\"[^\"]*\)/\1 ${NvidiaModule}/" "${GrubConfigFile}"
     }
+
+    sudo grub-mkconfig -o /boot/grub/grub.cfg
 fi
 
 # DRM kernel
