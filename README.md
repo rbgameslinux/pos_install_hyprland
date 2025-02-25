@@ -1,23 +1,19 @@
-# Hyprland com Archlinux pronto p/jogar e usar no dia dia.
------------------------------------------------------------
 
-Script para instalação do Hyprland p/Archlinux com minhas Dotfiles. 
+# Hyprland + Archlinux p/jogar e usar no dia dia.
 
+Script para instalação do Hyprland p/Archlinux com minhas Dotfiles.
 Este script foi projetado para a instalação minimal do Archlinux conforme os videos do canal.
-
 Esse script já faz a instalação de todos os pacotes necessários para se jogar no Archlinux com Hyprland.
-
 E já faz todas as conmfigs necessárias para se ter um bom funcionamento.
-
 Passos que se deve tomar antes da instalação !!!
 
-(se poder assista o video explicativo) link:
+`(Assista o video explicativo) link:`
 
-video 1 https://youtu.be/6KrKxNsAdYo
+video 1 [Dotfiles](https://youtu.be/6KrKxNsAdYo)
 
-video 2 https://youtu.be/ezOm_47syUM
+video 2 [utilização do script](https://youtu.be/ezOm_47syUM^)
 
--------------------------------------------------------------
+## 🖥️ Instalação
 
 sudo pacman -S git nano
 
