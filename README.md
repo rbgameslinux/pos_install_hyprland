@@ -1,11 +1,11 @@
 
+# Hyprland + Archlinux p/jogar e usar no dia dia.
+
 <p align="center">
   <img src="https://github.com/user-attachments/assets/112be1e1-24f7-4456-abc0-6eac2ababf6f" width="150" />
 </p>
 
-
-# Hyprland + Archlinux p/jogar e usar no dia dia.
-
+-----
 Script para instalação do Hyprland p/Archlinux com minhas Dotfiles.
 Este script foi projetado para a instalação minimal do Archlinux conforme os videos do canal.
 Esse script já faz a instalação de todos os pacotes necessários para se jogar no Archlinux com Hyprland.
