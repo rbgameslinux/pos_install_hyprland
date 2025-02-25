@@ -64,6 +64,7 @@ Israel  (algumas dotfiles)
 ![image](https://github.com/user-attachments/assets/66d0717b-59a7-4603-9e3c-49ae03a2395b)
 
 
+![RB GAMES](https://github.com/user-attachments/assets/112be1e1-24f7-4456-abc0-6eac2ababf6f)
 
 
 
