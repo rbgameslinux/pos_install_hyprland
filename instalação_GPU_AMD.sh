@@ -142,7 +142,7 @@ Install_pacman() {
     done
 }
 packages=(
-    git wget unzip gum rofi wofi unrar okular waybar swww dolphin dolphin-plugins
+    base-devel git wget unzip gum rofi wofi unrar okular waybar swww dolphin dolphin-plugins
     ark firefox loupe xdg-desktop-portal xdg-desktop-portal-gnome
     xdg-desktop-portal-gtk xdg-desktop-portal-hyprland blueman bluedevil
     xdg-desktop-portal-wlr xdg-user-dirs xdg-user-dirs-gtk
