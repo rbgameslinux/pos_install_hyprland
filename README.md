@@ -72,8 +72,11 @@ Erros e sugestões podem ser colocadas em [Issues](https://github.com/rbgameslin
 -------
 ![image](https://github.com/user-attachments/assets/66d0717b-59a7-4603-9e3c-49ae03a2395b)
 
-----
 
+    
+## Licença
+
+[GNU-GPL](https://github.com/rbgameslinux/pos_install_hyprland/blame/main/LICENSE)
 
 
 
