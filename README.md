@@ -21,6 +21,7 @@ video 2 [utilização do script](https://youtu.be/ezOm_47syUM^)
 ## 🖥️ Instalação
 
 ```
+Atenção faça uma instalação do archlinux minimal como mostrado no video !!!!
 sudo pacman -S git nano
 
 sudo nano /etc/makepkg.conf
