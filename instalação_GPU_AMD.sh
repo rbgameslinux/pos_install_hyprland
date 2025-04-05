@@ -12,8 +12,8 @@
 usuario=$(whoami)
 package_amd=(lib32-vulkan-radeon amd-ucode xf86-video-amdgpu xf86-video-ati vulkan-radeon)
 package_intel=(vulkan-intel intel-ucode libva-intel-driver xf86-video-intel lib32-vulkan-intel)
-package_yay=(wayosd-git waypaper qt5ct-kde qt6ct-kde grimblast swaylock-effects reiserfsprogs wlogout protonup-qt-bin clipman clipse heroic-games-launcher-bin visual-studio-code-bin)   
-packages_pacman=(base-devel git wget unzip gum rofi wofi unrar okular waybar swww dolphin dolphin-plugins ark firefox loupe xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk
+package_yay=(swayosd-git waypaper qt5ct-kde qt6ct-kde grimblast swaylock-effects reiserfsprogs wlogout protonup-qt-bin clipman clipse heroic-games-launcher-bin visual-studio-code-bin)   
+packages_pacman=(base-devel git wget unzip bash-completion fish gum rofi wofi unrar okular waybar swww dolphin dolphin-plugins ark firefox loupe xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk
     xdg-desktop-portal-hyprland blueman bluedevil xdg-desktop-portal-wlr xdg-user-dirs xdg-user-dirs-gtk xdg-utils archlinux-xdg-menu btop ttf-font-awesome noto-fonts noto-fonts-emoji
     noto-fonts-extra ttf-firacode-nerd ttf-jetbrains-mono-nerd swayidle polkit-gnome bash-completion ntfs-3g ffmpegthumbnailer ffmpegthumbs volumeicon pavucontrol pamixer notification-daemon 
     wl-clipboard wayland-utils clinfo alsa-utils  imagemagick adw-gtk-theme breeze breeze5 breeze-gtk breeze-icons nwg-look bluez bluez-utils bluez-tools kio kde-cli-tools sddm xorg
@@ -166,7 +166,7 @@ echo "Colocando o dolphin com padrão do sistema"
 
 echo "Habilitando o sddm, bluetooth no sitema"
 
-    systemctl enable sddm.service ; systemctl start user@970.service ; sudo systemctl start bluetooth.service ; sudo systemctl enable bluetooth.service
+    systemctl enable sddm.service ; sudo systemctl start bluetooth.service ; sudo systemctl enable bluetooth.service
 
     #dofiles
 
