@@ -8,7 +8,8 @@
 
 
 # Variaveis
-
+Note='[\033[1;34mNOTA\033[0m]'
+Error='[\033[1;31mERRO\033[0m]'
 usuario=$(whoami)
 package_amd=(lib32-vulkan-radeon amd-ucode xf86-video-amdgpu xf86-video-ati vulkan-radeon)
 package_intel=(vulkan-intel intel-ucode libva-intel-driver xf86-video-intel lib32-vulkan-intel)
@@ -83,6 +84,16 @@ case "${cpu}" in
     ;;
   *) exit 0 ;;
 esac
+
+# Habilita o repositório multilib
+PacmanPath="/etc/pacman.conf"
+MultilibMsg="Habilitando repositório multilib"
+grep -q '^#\[multilib\]' "${PacmanPath}" && {
+  echo -e "${Note} - ${MultilibMsg}"
+  sudo sed -i '/^#\[multilib\]/{s/^#//;n;s/^#//;}' "${PacmanPath}" && {
+    echo -e "${Clear}${OK} - ${MultilibMsg}"
+  } || echo -e "${Clear}${Error} - ${MultilibMsg}"
+}   
    
     # instalação de pacotes
 
