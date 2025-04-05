@@ -12,8 +12,8 @@
 usuario=$(whoami)
 package_amd=(lib32-vulkan-radeon amd-ucode xf86-video-amdgpu xf86-video-ati vulkan-radeon)
 package_intel=(vulkan-intel intel-ucode libva-intel-driver xf86-video-intel lib32-vulkan-intel)
-package_yay=(swayosd-git waypaper qt5ct-kde qt6ct-kde grimblast swaylock-effects reiserfsprogs wlogout protonup-qt-bin clipman clipse heroic-games-launcher-bin visual-studio-code-bin)   
-packages_pacman=(base-devel git wget unzip bash-completion fish gum rofi wofi unrar okular waybar swww dolphin dolphin-plugins ark firefox loupe xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk
+package_yay_list=(swayosd-git waypaper qt5ct-kde qt6ct-kde grimblast swaylock-effects reiserfsprogs wlogout protonup-qt-bin clipman clipse heroic-games-launcher-bin visual-studio-code-bin)   
+packages=(base-devel git wget unzip bash-completion fish gum rofi wofi unrar okular waybar swww dolphin dolphin-plugins ark firefox loupe xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk
     xdg-desktop-portal-hyprland blueman bluedevil xdg-desktop-portal-wlr xdg-user-dirs xdg-user-dirs-gtk xdg-utils archlinux-xdg-menu btop ttf-font-awesome noto-fonts noto-fonts-emoji
     noto-fonts-extra ttf-firacode-nerd ttf-jetbrains-mono-nerd swayidle polkit-gnome bash-completion ntfs-3g ffmpegthumbnailer ffmpegthumbs volumeicon pavucontrol pamixer notification-daemon 
     wl-clipboard wayland-utils clinfo alsa-utils  imagemagick adw-gtk-theme breeze breeze5 breeze-gtk breeze-icons nwg-look bluez bluez-utils bluez-tools kio kde-cli-tools sddm xorg
@@ -73,18 +73,20 @@ echo ".JMML. .JMM..JMMmmmd9        \`\"bmmmdPY  \`Moo9^Yo..JMML  JMML  JMML. \`M
 echo -e "\033[0m\n"
 
     # Detecta a fabricante do CPU e insere o pacote de microcode adequado à lista de pacotes (x86mota)
-
+pacotes=()
 cpu=$(grep -m 1 'vendor_id' /proc/cpuinfo | awk '{print $NF}')
-case ${cpu} in
+ase "${cpu}" in
   AuthenticAMD)
     pacotes+=("${package_amd[@]}")
     ;;
   GenuineIntel)
     pacotes+=("${package_intel[@]}")
     ;;
-  *) exit 0 ;;
+  *)
+    ;;
 esac
-    
+echo "${pacotes[@]}"
+   
     # instalação de pacotes
 
 sudo pacman -Syu --noconfirm --needed
@@ -101,7 +103,7 @@ Install_pacman() {
             break
         else
             echo "Erro ao instalar $package_pacman. Tentativa $i de 3..."
-            pause
+            read -p "Pressione qualquer tecla para continuar..."
         fi
     done
 }
@@ -137,14 +139,14 @@ install_yay() {
             break
         else
             echo "Erro ao instalar $package_yay. Tentativa $i de 3..."
-            pause
+            read -p "Pressione qualquer tecla para continuar..."
         fi
     done
 }
           
-for pkg in "${package_yay[@]}"; do
+for pkg in "${package_yay_list[@]}"; do
     install_yay "$pkg"
-done    
+done
 
      # Adiciona o usuário ao grupo 'wheel'
 
