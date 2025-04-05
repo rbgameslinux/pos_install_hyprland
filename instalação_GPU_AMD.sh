@@ -76,10 +76,10 @@ echo -e "\033[0m\n"
 pacotes=()
 cpu=$(grep -m 1 'vendor_id' /proc/cpuinfo | awk '{print $NF}')
 ase "${cpu}" in
-  AuthenticAMD)
+  AuthenticAMD
     pacotes+=("${package_amd[@]}")
     ;;
-  GenuineIntel)
+  GenuineIntel
     pacotes+=("${package_intel[@]}")
     ;;
   *)
