@@ -73,19 +73,16 @@ echo ".JMML. .JMM..JMMmmmd9        \`\"bmmmdPY  \`Moo9^Yo..JMML  JMML  JMML. \`M
 echo -e "\033[0m\n"
 
     # Detecta a fabricante do CPU e insere o pacote de microcode adequado à lista de pacotes (x86mota)
-pacotes=()
 cpu=$(grep -m 1 'vendor_id' /proc/cpuinfo | awk '{print $NF}')
-ase "${cpu}" in
-  AuthenticAMD
+case "${cpu}" in
+  AuthenticAMD)
     pacotes+=("${package_amd[@]}")
     ;;
-  GenuineIntel
+  GenuineIntel)
     pacotes+=("${package_intel[@]}")
     ;;
-  *)
-    ;;
+  *) exit 0 ;;
 esac
-echo "${pacotes[@]}"
    
     # instalação de pacotes
 
