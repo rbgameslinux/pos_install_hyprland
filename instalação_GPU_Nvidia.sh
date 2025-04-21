@@ -51,7 +51,7 @@ pacotes_yay=(
 
 # ================================================== #
 cd $HOME/pos_install_pessoal
-sudo pacman -U qqc2-desktop-style5-5.116.1-1-x86_64.pkg.tar.zst
+sudo pacman -U --noconfirm --needed qqc2-desktop-style5-5.116.1-1-x86_64.pkg.tar.zst
 # ==================== FUNÇÕES ==================== #
 
 function _UserConfirm {
