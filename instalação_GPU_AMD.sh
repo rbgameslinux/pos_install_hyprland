@@ -99,7 +99,7 @@ grep -q '^#\[multilib\]' "${PacmanPath}" && {
 
 sudo pacman -Syu --noconfirm --needed
 cd $HOME/pos_install_hyprland
-sudo pacman -U qqc2-desktop-style5-5.116.1-1-x86_64.pkg.tar.zst
+sudo pacman -U --noconfirm --needed qqc2-desktop-style5-5.116.1-1-x86_64.pkg.tar.zst
 
 echo "Instalando pacotes necessarios do systema com pacman"
 
