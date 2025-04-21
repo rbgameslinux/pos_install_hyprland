@@ -43,13 +43,15 @@ pacotes=(
     ksnip swaync hyprland xorg-server xorg-xinit epapirus-icon-theme fastfetch
 )
 pacotes_yay=(
-    swayosd-git waypaper  qt5ct qt6ct-kde grimblast
+    swayosd-git waypaper  qt5ct-kde qt6ct-kde grimblast
     swaylock-effects reiserfsprogs wlogout protonup-qt-bin clipman
     clipse heroic-games-launcher-bin visual-studio-code-bin 
 )
 
-# ================================================== #
 
+# ================================================== #
+cd $HOME/pos_install_pessoal
+sudo pacman -U qqc2-desktop-style5-5.116.1-1-x86_64.pkg.tar.zst
 # ==================== FUNÇÕES ==================== #
 
 function _UserConfirm {
