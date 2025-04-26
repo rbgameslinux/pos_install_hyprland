@@ -13,7 +13,7 @@ Error='[\033[1;31mERRO\033[0m]'
 usuario=$(whoami)
 package_amd=(lib32-vulkan-radeon amd-ucode xf86-video-amdgpu xf86-video-ati vulkan-radeon)
 package_intel=(vulkan-intel intel-ucode libva-intel-driver xf86-video-intel lib32-vulkan-intel)
-package_yay_list=(swayosd-git waypaper qt5ct-kde qt6ct-kde grimblast swaylock-effects reiserfsprogs wlogout protonup-qt-bin clipman clipse heroic-games-launcher-bin visual-studio-code-bin)   
+package_yay=(swayosd-git waypaper qt5ct-kde qt6ct-kde grimblast swaylock-effects reiserfsprogs wlogout protonup-qt-bin clipman clipse heroic-games-launcher-bin visual-studio-code-bin)   
 packages=(base-devel git wget unzip bash-completion fish gum rofi wofi unrar okular waybar swww dolphin dolphin-plugins ark firefox loupe xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk
     xdg-desktop-portal-hyprland blueman bluedevil xdg-desktop-portal-wlr xdg-user-dirs xdg-user-dirs-gtk xdg-utils archlinux-xdg-menu btop ttf-font-awesome noto-fonts noto-fonts-emoji
     noto-fonts-extra ttf-firacode-nerd ttf-jetbrains-mono-nerd swayidle polkit-gnome bash-completion ntfs-3g ffmpegthumbnailer ffmpegthumbs volumeicon pavucontrol pamixer notification-daemon 
@@ -154,7 +154,7 @@ install_yay() {
     done
 }
           
-for pkg in "${package_yay_list[@]}"; do
+for pkg in "${package_yay[@]}"; do
     install_yay "$pkg"
 done
 
