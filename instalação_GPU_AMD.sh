@@ -106,13 +106,13 @@ echo "Instalando pacotes necessarios do systema com pacman"
 
 
 Install_pacman() {
-    package_pacman=$1
+    packages=$1
     for i in {1..3}; do
-        if sudo pacman -S --noconfirm --needed "$package_pacman"; then
-            echo "$package_pacman instalado com sucesso."
+        if sudo pacman -S --noconfirm --needed "$package"; then
+            echo "$packages instalado com sucesso."
             break
         else
-            echo "Erro ao instalar $package_pacman. Tentativa $i de 3..."
+            echo "Erro ao instalar $packages. Tentativa $i de 3..."
             read -p "Pressione qualquer tecla para continuar..."
         fi
     done
