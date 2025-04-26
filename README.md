@@ -6,6 +6,9 @@
 </p>
 
 -----
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/zQBuEouRS7U" frameborder="0" allowfullscreen></iframe>
+
 Script para instalação do Hyprland p/Archlinux com minhas Dotfiles.
 Este script foi projetado para a instalação minimal do Archlinux conforme os videos do canal.
 Esse script já faz a instalação de todos os pacotes necessários para se jogar no Archlinux com Hyprland.
