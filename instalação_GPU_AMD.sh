@@ -14,7 +14,7 @@ usuario=$(whoami)
 package_amd=(lib32-vulkan-radeon amd-ucode xf86-video-amdgpu xf86-video-ati vulkan-radeon)
 package_intel=(vulkan-intel intel-ucode libva-intel-driver xf86-video-intel lib32-vulkan-intel)
 package_yay=(swayosd-git waypaper qt5ct-kde qt6ct-kde grimblast swaylock-effects reiserfsprogs wlogout protonup-qt-bin clipman clipse heroic-games-launcher-bin visual-studio-code-bin)   
-packages=(base-devel git wget unzip bash-completion fish gum rofi wofi unrar okular waybar swww dolphin dolphin-plugins ark firefox loupe xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk
+package_arch=(base-devel git wget unzip bash-completion fish gum rofi wofi unrar okular waybar swww dolphin dolphin-plugins ark firefox loupe xdg-desktop-portal xdg-desktop-portal-gnome xdg-desktop-portal-gtk
     xdg-desktop-portal-hyprland blueman bluedevil xdg-desktop-portal-wlr xdg-user-dirs xdg-user-dirs-gtk xdg-utils archlinux-xdg-menu btop ttf-font-awesome noto-fonts noto-fonts-emoji
     noto-fonts-extra ttf-firacode-nerd ttf-jetbrains-mono-nerd swayidle polkit-gnome bash-completion ntfs-3g ffmpegthumbnailer ffmpegthumbs volumeicon pavucontrol pamixer notification-daemon 
     wl-clipboard wayland-utils clinfo alsa-utils  imagemagick adw-gtk-theme breeze breeze5 breeze-gtk breeze-icons nwg-look bluez bluez-utils bluez-tools kio kde-cli-tools sddm xorg
@@ -99,26 +99,26 @@ grep -q '^#\[multilib\]' "${PacmanPath}" && {
 
 sudo pacman -Syu --noconfirm --needed
 cd $HOME/pos_install_hyprland
-sudo pacman -U --noconfirm --needed qqc2-desktop-style5-5.116.1-1-x86_64.pkg.tar.zst python-setuptools-1_78.1.1-1-any.pkg.tar.zst
+sudo pacman -U --noconfirm --needed qqc2-desktop-style5-5.116.1-1-x86_64.pkg.tar.zst 
 
 echo "Instalando pacotes necessarios do systema com pacman"
 
 
 
 Install_pacman() {
-    packages=$1
+    package_arch=$1
     for i in {1..3}; do
-        if sudo pacman -S --noconfirm --needed "$package"; then
-            echo "$packages instalado com sucesso."
+        if sudo pacman -S --noconfirm --needed "$package_arch"; then
+            echo "$package_arch instalado com sucesso."
             break
         else
-            echo "Erro ao instalar $packages. Tentativa $i de 3..."
+            echo "Erro ao instalar $package_arch. Tentativa $i de 3..."
             read -p "Pressione qualquer tecla para continuar..."
         fi
     done
 }
 
-for pkg in "${packages[@]}"; do
+for pkg in "${package_arch[@]}"; do
     Install_pacman "$pkg"
 done
 
