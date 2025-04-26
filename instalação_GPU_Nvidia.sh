@@ -76,26 +76,26 @@ esac
 }
 
 Install_pacman() {
-    package=$1
+    pacotes=$1
     for i in {1..3}; do
-        if sudo pacman -S --noconfirm --needed "$package"; then
-            echo "${OK} - $package instalado com sucesso."
+        if sudo pacman -S --noconfirm --needed "$pacotes"; then
+            echo "${OK} - $pacotes instalado com sucesso."
             break
         else
-            echo "${Note} - Erro ao instalar $package. Tentativa $i de 3..."
+            echo "${Note} - Erro ao instalar $pacotes. Tentativa $i de 3..."
             pause
         fi
     done
 }
 
 install_yay() {
-    package_yay=$1
+    pacotes_yay=$1
     for i in {1..3}; do
-        if yay -S --noconfirm --needed "$package_yay"; then
-            echo "$package_yay instalado com sucesso."
+        if yay -S --noconfirm --needed "$pacotes_yay"; then
+            echo "$pacotes_yay instalado com sucesso."
             break
         else
-            echo "Erro ao instalar $package_yay. Tentativa $i de 3..."
+            echo "Erro ao instalar $pacotes_yay. Tentativa $i de 3..."
             pause
         fi
     done
